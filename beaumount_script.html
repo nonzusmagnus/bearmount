@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Beaumount — Sightline Sunny's</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --night:#141210;
+    --night-2:#1c1815;
+    --dawn:#F0A93C;
+    --dusk:#E8615F;
+    --cream:#F3EDE1;
+    --slate:#948C7C;
+    --line:#3a352d;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:var(--night);
+    color:var(--cream);
+    font-family:'Oswald',sans-serif;
+    padding:0;
+  }
+
+  .wrap{max-width:920px;margin:0 auto;padding:70px 40px 100px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding-bottom:50px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:56px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--dawn);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    color:var(--cream);
+    margin-bottom:10px;
+  }
+  h1 span{color:var(--dawn); font-style:normal;}
+  .subline{
+    font-size:17px;
+    color:var(--slate);
+    max-width:560px;
+    line-height:1.5;
+    margin-top:14px;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    margin-top:32px;
+  }
+  .meta-item{font-family:'JetBrains Mono',monospace; font-size:12px;}
+  .meta-item .k{color:var(--slate); text-transform:uppercase; letter-spacing:0.1em; font-size:10px; display:block; margin-bottom:4px;}
+  .meta-item .v{color:var(--cream); font-size:13px;}
+
+  /* TIMELINE BAR — signature element */
+  .timeline{
+    margin:56px 0 64px;
+  }
+  .timeline-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:14px;
+  }
+  .bar{
+    position:relative;
+    height:54px;
+    border-radius:6px;
+    overflow:hidden;
+    background:linear-gradient(90deg, #2a2119 0%, var(--dawn) 48%, var(--dusk) 52%, #1a1e2e 100%);
+    display:flex;
+  }
+  .bar-seg{flex:1; display:flex; align-items:center; justify-content:center; position:relative;}
+  .bar-seg .seg-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(20,18,16,0.75);
+    font-weight:500;
+  }
+  .bar-seg.b .seg-label{color:rgba(243,237,225,0.85);}
+  .bar-split{
+    position:absolute; left:50%; top:0; bottom:0;
+    width:2px; background:var(--night);
+    z-index:2;
+  }
+  .bar-split::after{
+    content:'0:16';
+    position:absolute;
+    top:-22px; left:50%; transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; color:var(--slate);
+  }
+  .bar-ticks{display:flex; justify-content:space-between; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--slate);}
+
+  /* SCENES */
+  .scene{margin-bottom:64px;}
+  .scene-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:6px;
+  }
+  .scene-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--dawn);
+  }
+  .scene-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:28px;
+  }
+  .scene-loc{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--slate);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:26px;
+  }
+
+  .beat{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .beat:last-child{border-bottom:1px solid var(--line);}
+  .beat-time{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--slate);
+    padding-top:2px;
+  }
+  .beat-body p{font-size:15px; line-height:1.6; color:var(--cream); margin-bottom:6px;}
+  .beat-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--night);
+    background:var(--dawn);
+    padding:2px 8px;
+    border-radius:3px;
+    margin-right:8px;
+    margin-bottom:6px;
+  }
+  .beat-tag.alt{background:var(--dusk);}
+  .beat-tag.b{background:#5a6b8c;}
+
+  .altnote{
+    font-size:13px;
+    color:var(--slate);
+    font-style:italic;
+    border-left:2px solid var(--dawn);
+    padding-left:12px;
+    margin-top:8px;
+  }
+
+  /* VO / DIALOGUE BLOCKS */
+  .vo-block{
+    background:var(--night-2);
+    border-radius:8px;
+    padding:26px 30px;
+    margin:24px 0;
+    border-left:3px solid var(--dawn);
+  }
+  .vo-block.fr{border-left-color:var(--dusk);}
+  .vo-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--dawn);
+    margin-bottom:14px;
+  }
+  .vo-block.fr .vo-label{color:var(--dusk);}
+  .vo-line{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:19px;
+    line-height:1.65;
+    color:var(--cream);
+  }
+  .vo-line .fr-en{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-style:normal;
+    font-size:12px;
+    color:var(--slate);
+    margin-top:2px;
+    margin-bottom:14px;
+  }
+  .vo-line span.line{display:block; margin-bottom:10px;}
+
+  /* CLOSER */
+  .closer{
+    background:var(--night-2);
+    border-radius:10px;
+    padding:34px 36px;
+    margin-top:10px;
+  }
+  .closer h3{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:24px;
+    margin-bottom:14px;
+    color:var(--dawn);
+  }
+  .closer p{font-size:15px; line-height:1.7; color:var(--cream); margin-bottom:10px;}
+
+  /* NOTES */
+  .notes{
+    margin-top:60px;
+    padding-top:30px;
+    border-top:1px solid var(--line);
+  }
+  .notes h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:18px;
+  }
+  .notes ul{list-style:none;}
+  .notes li{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--cream);
+    padding-left:18px;
+    position:relative;
+    margin-bottom:10px;
+  }
+  .notes li::before{
+    content:'—';
+    position:absolute;
+    left:0;
+    color:var(--dawn);
+  }
+
+  @media(max-width:640px){
+    .wrap{padding:40px 20px 70px;}
+    .beat{grid-template-columns:1fr; gap:6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Beaumount — Cinematic Commercial</div>
+    <h1>Sightline <span>Sunny's</span></h1>
+    <div class="subline">A single unbroken pull-out carries one runner's morning straight into a friend's rooftop night — same glasses, two entirely different lives. 32 seconds, one continuous idea.</div>
+    <div class="meta-row">
+      <div class="meta-item"><span class="k">Runtime</span><span class="v">0:32 max</span></div>
+      <div class="meta-item"><span class="k">Cast</span><span class="v">5 — lead girl, lead boy, 3 friends</span></div>
+      <div class="meta-item"><span class="k">Locations</span><span class="v">Airbnb / St Anne's Park / Rooftop Bar</span></div>
+      <div class="meta-item"><span class="k">Product</span><span class="v">Sightline Sunny's — running glasses</span></div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-label">Runtime map — one continuous pull-out across the cut</div>
+    <div class="bar">
+      <div class="bar-seg a"><span class="seg-label">Scene 1 — Her Run</span></div>
+      <div class="bar-split"></div>
+      <div class="bar-seg b"><span class="seg-label">Scene 2 — His Rooftop</span></div>
+    </div>
+    <div class="bar-ticks"><span>0:00</span><span>0:32</span></div>
+  </div>
+
+  <!-- SCENE 1 -->
+  <div class="scene">
+    <div class="scene-head">
+      <span class="scene-num">01</span>
+      <span class="scene-title">Her Run</span>
+    </div>
+    <div class="scene-loc">Airbnb (bedroom) → St Anne's Park · 0:00 – 0:16</div>
+
+    <div class="beat">
+      <div class="beat-time">0:00</div>
+      <div class="beat-body">
+        <span class="beat-tag">Open</span>
+        <p>Close-up on the alarm clock, screen glowing in a dark room. She wakes, sits up, ties her laces — hands only, functional, no rush.</p>
+        <div class="altnote">Alt open: skip the bedroom entirely. Open on a park bench, close-up on her watch face showing the time, then straight into tying her laces. Pick whichever location logistics favour on the day — both hit the same beat.</div>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:02–0:05</div>
+      <div class="beat-body">
+        <p>Quick stretch. Close-up on the glasses going on — focused, composed look on her face. This is the gear-up moment, treated with weight, not rushed.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:05</div>
+      <div class="beat-body">
+        <span class="beat-tag">Transition</span>
+        <p>Flash cut into motion — this is where the montage begins.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:05–0:15</div>
+      <div class="beat-body">
+        <p>Slow-motion running montage: stride, breath, sweat rolling, light catching the lens. Fast, rhythmic cutting — this is where the pace of the edit does the work. Her VO plays across this entire stretch.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:15–0:16</div>
+      <div class="beat-body">
+        <span class="beat-tag alt">Bridge</span>
+        <p>Slow camera pull-out begins from a close-up on her glasses. This pull-out does not cut — it continues straight into Scene 2.</p>
+      </div>
+    </div>
+
+    <div class="vo-block">
+      <div class="vo-label">Her voiceover — plays under 0:05–0:15</div>
+      <div class="vo-line">
+        <span class="line">No one understands how hard it gets.</span>
+        <span class="line">Sometimes I just need a bit of space.</span>
+        <span class="line">Yeah, I get a bit emotional at times.</span>
+        <span class="line">But I feel stronger than ever.</span>
+        <span class="line">I feel more like me.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 -->
+  <div class="scene">
+    <div class="scene-head">
+      <span class="scene-num">02</span>
+      <span class="scene-title">His Rooftop</span>
+    </div>
+    <div class="scene-loc">Rooftop Bar · 0:16 – 0:32</div>
+
+    <div class="beat">
+      <div class="beat-time">0:16</div>
+      <div class="beat-body">
+        <span class="beat-tag alt">Bridge continues</span>
+        <p>The pull-out from Scene 1 keeps going, uncut, and lands on a guy seated at the rooftop event space. Same camera move, new world.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:16–0:24</div>
+      <div class="beat-body">
+        <p>Still slow motion. As the camera keeps pulling out, the space, the venue, and his friends slowly enter frame — cheering, socializing, drinks in hand. His dialogue plays in French across this stretch.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:24–0:29</div>
+      <div class="beat-body">
+        <span class="beat-tag b">B-roll</span>
+        <p>Slow motion ends. One or two b-roll cuts of the group socializing — natural, unposed, drinks and laughter.</p>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-time">0:29–0:32</div>
+      <div class="beat-body">
+        <span class="beat-tag b">Close</span>
+        <p>Far 50mm shot: the group socializing, soft in the background. In the foreground, the glasses rest beside a drink. Product text card fades in over the frame to close.</p>
+      </div>
+    </div>
+
+    <div class="vo-block fr">
+      <div class="vo-label">His dialogue — French, plays under 0:16–0:24</div>
+      <div class="vo-line">
+        <span class="line">Moi aussi.</span>
+        <span class="fr-en">Me too.</span>
+        <span class="line">Je pense à des trucs beaucoup.</span>
+        <span class="fr-en">I think about a lot of things.</span>
+        <span class="line">Mais maintenant, regardons le présent.</span>
+        <span class="fr-en">But now, let's look at the present.</span>
+        <span class="line">Nous gardons les yeux fixés sur la destination, et non sur le passé.</span>
+        <span class="fr-en">We keep our eyes on the destination, not the past.</span>
+      </div>
+    </div>
+
+    <div class="closer">
+      <h3>Closing frame</h3>
+      <p>The glasses aren't being worn in the last shot — they're just sitting there, done with the job, in both worlds. That's the whole pitch: same object, morning run, night out, no difference to it.</p>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h3>Production notes</h3>
+    <ul>
+      <li>Both VO tracks are designed to run continuously under their scene's action — treat them as a bed, not sync'd to specific cuts, so the editor has room to play with rhythm in the montage.</li>
+      <li>The 0:15–0:16 pull-out is the hinge of the whole film — it should read as one unbroken camera move even if it's stitched from two separate takes/locations in post.</li>
+      <li>Confirm which Scene 1 open (bedroom alarm vs. park bench watch) fits the Airbnb/St Anne's Park schedule before the shoot day — both are scripted and ready to go.</li>
+      <li>French dialogue needs a native/fluent speaker on set for delivery timing, or a scratch VO reference track so lip timing holds in the edit.</li>
+      <li>Final product card (logo, name, tagline) to be confirmed and dropped over the 0:29–0:32 frame in post.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
