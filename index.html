@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Beaumount — Sightline Sunny's</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beaumount — Sightline Sunny's · Storyboard</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -25,11 +26,9 @@
     padding:0;
   }
 
-  .wrap{max-width:920px;margin:0 auto;padding:70px 40px 100px;}
+  .wrap{max-width:1200px;margin:0 auto;padding:60px 40px 100px;}
 
-  /* HERO */
   .hero{
-    position:relative;
     padding-bottom:50px;
     border-bottom:1px solid var(--line);
     margin-bottom:56px;
@@ -70,7 +69,7 @@
   .meta-item .k{color:var(--slate); text-transform:uppercase; letter-spacing:0.1em; font-size:10px; display:block; margin-bottom:4px;}
   .meta-item .v{color:var(--cream); font-size:13px;}
 
-  /* TIMELINE BAR — signature element */
+  /* TIMELINE BAR */
   .timeline{
     margin:56px 0 64px;
   }
@@ -114,48 +113,108 @@
   }
   .bar-ticks{display:flex; justify-content:space-between; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--slate);}
 
-  /* SCENES */
-  .scene{margin-bottom:64px;}
-  .scene-head{
+  .board-header{
     display:flex;
+    justify-content:space-between;
     align-items:baseline;
-    gap:16px;
-    margin-bottom:6px;
+    margin-bottom:36px;
   }
-  .scene-num{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;
-    color:var(--dawn);
-  }
-  .scene-title{
+  .board-header h2{
     font-family:'Fraunces',serif;
     font-weight:600;
     font-size:28px;
   }
-  .scene-loc{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--slate);
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin-bottom:26px;
-  }
-
-  .beat{
-    display:grid;
-    grid-template-columns:70px 1fr;
-    gap:20px;
-    padding:16px 0;
-    border-top:1px solid var(--line);
-  }
-  .beat:last-child{border-bottom:1px solid var(--line);}
-  .beat-time{
+  .board-header .count{
     font-family:'JetBrains Mono',monospace;
     font-size:12px;
     color:var(--slate);
-    padding-top:2px;
   }
-  .beat-body p{font-size:15px; line-height:1.6; color:var(--cream); margin-bottom:6px;}
+
+  .shot{
+    margin-bottom:56px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:44px;
+  }
+  .shot.done{opacity:0.45;}
+  .shot.done .media-grid .item{filter:grayscale(1);}
+  .shot-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .shot-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    color:var(--dawn);
+    font-weight:500;
+  }
+  .shot-count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--slate);
+  }
+  .shot-scene{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:22px;
+    margin-bottom:4px;
+  }
+
+  .media-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:12px;
+    margin-bottom:24px;
+  }
+  .media-grid .item{
+    position:relative;
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--night-2);
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .media-grid .item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .media-grid .item .label{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    color:rgba(243,237,225,0.7);
+    background:rgba(20,18,16,0.7);
+    padding:4px 8px;
+    backdrop-filter:blur(4px);
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+
+  .beat-content{
+    background:var(--night-2);
+    border-radius:8px;
+    padding:20px 24px;
+    margin-bottom:16px;
+  }
+  .beat-time{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--dawn);
+    margin-bottom:8px;
+  }
+  .beat-content p{
+    font-size:15px;
+    line-height:1.6;
+    color:var(--cream);
+    margin-bottom:6px;
+  }
   .beat-tag{
     display:inline-block;
     font-family:'JetBrains Mono',monospace;
@@ -171,7 +230,6 @@
   }
   .beat-tag.alt{background:var(--dusk);}
   .beat-tag.b{background:#5a6b8c;}
-
   .altnote{
     font-size:13px;
     color:var(--slate);
@@ -181,12 +239,11 @@
     margin-top:8px;
   }
 
-  /* VO / DIALOGUE BLOCKS */
   .vo-block{
     background:var(--night-2);
     border-radius:8px;
-    padding:26px 30px;
-    margin:24px 0;
+    padding:20px 24px;
+    margin-bottom:16px;
     border-left:3px solid var(--dawn);
   }
   .vo-block.fr{border-left-color:var(--dusk);}
@@ -196,13 +253,13 @@
     letter-spacing:0.1em;
     text-transform:uppercase;
     color:var(--dawn);
-    margin-bottom:14px;
+    margin-bottom:10px;
   }
   .vo-block.fr .vo-label{color:var(--dusk);}
   .vo-line{
     font-family:'Fraunces',serif;
     font-style:italic;
-    font-size:19px;
+    font-size:18px;
     line-height:1.65;
     color:var(--cream);
   }
@@ -213,28 +270,99 @@
     font-size:12px;
     color:var(--slate);
     margin-top:2px;
-    margin-bottom:14px;
+    margin-bottom:10px;
   }
-  .vo-line span.line{display:block; margin-bottom:10px;}
+  .vo-line span.line{display:block; margin-bottom:8px;}
 
-  /* CLOSER */
   .closer{
     background:var(--night-2);
-    border-radius:10px;
-    padding:34px 36px;
-    margin-top:10px;
+    border-radius:8px;
+    padding:20px 24px;
+    margin-bottom:16px;
   }
   .closer h3{
     font-family:'Fraunces',serif;
     font-style:italic;
     font-weight:600;
-    font-size:24px;
-    margin-bottom:14px;
+    font-size:20px;
+    margin-bottom:10px;
     color:var(--dawn);
   }
-  .closer p{font-size:15px; line-height:1.7; color:var(--cream); margin-bottom:10px;}
+  .closer p{font-size:15px; line-height:1.7; color:var(--cream); margin-bottom:8px;}
 
-  /* NOTES */
+  .shot-check{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--slate);
+    cursor:pointer;
+    user-select:none;
+  }
+  .shot-check input[type="checkbox"]{
+    appearance:none;
+    width:22px;height:22px;
+    border:2px solid var(--slate);
+    border-radius:5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.15s;
+    flex-shrink:0;
+  }
+  .shot-check input[type="checkbox"]:checked{
+    background:var(--dawn);
+    border-color:var(--dawn);
+  }
+  .shot-check input[type="checkbox"]:checked::after{
+    content:"\2713";
+    font-size:16px;
+    font-weight:700;
+    color:var(--night);
+    line-height:1;
+  }
+
+  .song-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px 0;
+    margin-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .song-row .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .song-row .name{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--cream);
+  }
+  .play-btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:var(--dawn);
+    color:var(--night);
+    border:none;
+    padding:8px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:600;
+    transition:all 0.15s;
+    margin-left:auto;
+  }
+  .play-btn:hover{background:#e09a2e;}
+  .play-btn.playing{background:var(--dusk);}
+
   .notes{
     margin-top:60px;
     padding-top:30px;
@@ -258,7 +386,7 @@
     margin-bottom:10px;
   }
   .notes li::before{
-    content:'—';
+    content:'\2014';
     position:absolute;
     left:0;
     color:var(--dawn);
@@ -266,7 +394,7 @@
 
   @media(max-width:640px){
     .wrap{padding:40px 20px 70px;}
-    .beat{grid-template-columns:1fr; gap:6px;}
+    .media-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
   }
 </style>
 </head>
@@ -285,6 +413,12 @@
     </div>
   </div>
 
+  <div class="song-row">
+    <span class="label">Song</span>
+    <span class="name">MACHIAVEL</span>
+    <button class="play-btn" id="play-btn" onclick="toggleMusic()">&#9654; Play</button>
+  </div>
+
   <div class="timeline">
     <div class="timeline-label">Runtime map — one continuous pull-out across the cut</div>
     <div class="bar">
@@ -295,53 +429,98 @@
     <div class="bar-ticks"><span>0:00</span><span>0:32</span></div>
   </div>
 
-  <!-- SCENE 1 -->
-  <div class="scene">
-    <div class="scene-head">
-      <span class="scene-num">01</span>
-      <span class="scene-title">Her Run</span>
-    </div>
-    <div class="scene-loc">Airbnb (bedroom) → St Anne's Park · 0:00 – 0:16</div>
+  <div class="board-header">
+    <h2>Storyboard</h2>
+    <span class="count">43 frames · 9 shots</span>
+  </div>
 
-    <div class="beat">
+  <!-- SHOT 01 — 0:00 -->
+  <div class="shot" data-shot="1">
+    <div class="shot-head">
+      <span class="shot-num">Shot 01</span>
+      <span class="shot-count">5 frames</span>
+    </div>
+    <div class="shot-scene">Scene 1 — Wake Up</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%201/1.jpeg" alt="Shot 1 frame 1"><span class="label">1.jpeg</span></div>
+      <div class="item"><img src="shot%201/2.gif" alt="Shot 1 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%201/3.gif" alt="Shot 1 frame 3"><span class="label">3.gif</span></div>
+      <div class="item"><img src="shot%201/4.jpeg" alt="Shot 1 frame 4"><span class="label">4.jpeg</span></div>
+      <div class="item"><img src="shot%201/dccd6237-389f-4540-99fc-e3db51250b7d_xl.jpeg" alt="Shot 1 frame 5"><span class="label">5.jpeg</span></div>
+    </div>
+    <div class="beat-content">
       <div class="beat-time">0:00</div>
-      <div class="beat-body">
-        <span class="beat-tag">Open</span>
-        <p>Close-up on the alarm clock, screen glowing in a dark room. She wakes, sits up, ties her laces — hands only, functional, no rush.</p>
-        <div class="altnote">Alt open: skip the bedroom entirely. Open on a park bench, close-up on her watch face showing the time, then straight into tying her laces. Pick whichever location logistics favour on the day — both hit the same beat.</div>
-      </div>
+      <span class="beat-tag">Open</span>
+      <p>Close-up on the alarm clock, screen glowing in a dark room. She wakes, sits up, ties her laces — hands only, functional, no rush.</p>
+      <div class="altnote">Alt open: skip the bedroom entirely. Open on a park bench, close-up on her watch face showing the time, then straight into tying her laces. Pick whichever location logistics favour on the day — both hit the same beat.</div>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,1)"> Shot complete</label>
+  </div>
 
-    <div class="beat">
-      <div class="beat-time">0:02–0:05</div>
-      <div class="beat-body">
-        <p>Quick stretch. Close-up on the glasses going on — focused, composed look on her face. This is the gear-up moment, treated with weight, not rushed.</p>
-      </div>
+  <!-- SHOT 02 — 0:02–0:05 -->
+  <div class="shot" data-shot="2">
+    <div class="shot-head">
+      <span class="shot-num">Shot 02</span>
+      <span class="shot-count">5 frames</span>
     </div>
+    <div class="shot-scene">Scene 2 — Warm Up</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%202/1.jpeg" alt="Shot 2 frame 1"><span class="label">1.jpeg</span></div>
+      <div class="item"><img src="shot%202/2.gif" alt="Shot 2 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%202/3.jpeg" alt="Shot 2 frame 3"><span class="label">3.jpeg</span></div>
+      <div class="item"><img src="shot%202/4.gif" alt="Shot 2 frame 4"><span class="label">4.gif</span></div>
+      <div class="item"><img src="shot%202/b4274b91-e6e8-4c9f-b254-24a3466c8cfb_fs.gif" alt="Shot 2 frame 5"><span class="label">5.gif</span></div>
+    </div>
+    <div class="beat-content">
+      <div class="beat-time">0:02 – 0:05</div>
+      <p>Quick stretch. Close-up on the glasses going on — focused, composed look on her face. This is the gear-up moment, treated with weight, not rushed.</p>
+    </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,2)"> Shot complete</label>
+  </div>
 
-    <div class="beat">
+  <!-- SHOT 03 — 0:05 -->
+  <div class="shot" data-shot="3">
+    <div class="shot-head">
+      <span class="shot-num">Shot 03</span>
+      <span class="shot-count">6 frames</span>
+    </div>
+    <div class="shot-scene">Scene 3 — Her Run</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%203/1.gif" alt="Shot 3 frame 1"><span class="label">1.gif</span></div>
+      <div class="item"><img src="shot%203/2.gif" alt="Shot 3 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%203/3.gif" alt="Shot 3 frame 3"><span class="label">3.gif</span></div>
+      <div class="item"><img src="shot%203/4.gif" alt="Shot 3 frame 4"><span class="label">4.gif</span></div>
+      <div class="item"><img src="shot%203/5.jpeg" alt="Shot 3 frame 5"><span class="label">5.jpeg</span></div>
+      <div class="item"><img src="shot%203/6.jpeg" alt="Shot 3 frame 6"><span class="label">6.jpeg</span></div>
+    </div>
+    <div class="beat-content">
       <div class="beat-time">0:05</div>
-      <div class="beat-body">
-        <span class="beat-tag">Transition</span>
-        <p>Flash cut into motion — this is where the montage begins.</p>
-      </div>
+      <span class="beat-tag">Transition</span>
+      <p>Flash cut into motion — this is where the montage begins.</p>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,3)"> Shot complete</label>
+  </div>
 
-    <div class="beat">
-      <div class="beat-time">0:05–0:15</div>
-      <div class="beat-body">
-        <p>Slow-motion running montage: stride, breath, sweat rolling, light catching the lens. Fast, rhythmic cutting — this is where the pace of the edit does the work. Her VO plays across this entire stretch.</p>
-      </div>
+  <!-- SHOT 04 — 0:05–0:15 -->
+  <div class="shot" data-shot="4">
+    <div class="shot-head">
+      <span class="shot-num">Shot 04</span>
+      <span class="shot-count">7 frames</span>
     </div>
-
-    <div class="beat">
-      <div class="beat-time">0:15–0:16</div>
-      <div class="beat-body">
-        <span class="beat-tag alt">Bridge</span>
-        <p>Slow camera pull-out begins from a close-up on her glasses. This pull-out does not cut — it continues straight into Scene 2.</p>
-      </div>
+    <div class="shot-scene">Scene 4 — Keep Going</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%204/1.1.gif" alt="Shot 4 frame 1"><span class="label">1.1.gif</span></div>
+      <div class="item"><img src="shot%204/1.2.jpeg" alt="Shot 4 frame 2"><span class="label">1.2.jpeg</span></div>
+      <div class="item"><img src="shot%204/2.gif" alt="Shot 4 frame 3"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%204/3.gif" alt="Shot 4 frame 4"><span class="label">3.gif</span></div>
+      <div class="item"><img src="shot%204/4.gif" alt="Shot 4 frame 5"><span class="label">4.gif</span></div>
+      <div class="item"><img src="shot%204/5.gif" alt="Shot 4 frame 6"><span class="label">5.gif</span></div>
+      <div class="item"><img src="shot%204/6.gif" alt="Shot 4 frame 7"><span class="label">6.gif</span></div>
     </div>
-
+    <div class="beat-content">
+      <div class="beat-time">0:05 – 0:15</div>
+      <p>Slow-motion running montage: stride, breath, sweat rolling, light catching the lens. Fast, rhythmic cutting — this is where the pace of the edit does the work. Her VO plays across this entire stretch.</p>
+    </div>
     <div class="vo-block">
       <div class="vo-label">Her voiceover — plays under 0:05–0:15</div>
       <div class="vo-line">
@@ -352,47 +531,67 @@
         <span class="line">I feel more like me.</span>
       </div>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,4)"> Shot complete</label>
   </div>
 
-  <!-- SCENE 2 -->
-  <div class="scene">
-    <div class="scene-head">
-      <span class="scene-num">02</span>
-      <span class="scene-title">His Rooftop</span>
+  <!-- SHOT 05 — 0:15–0:16 -->
+  <div class="shot" data-shot="5">
+    <div class="shot-head">
+      <span class="shot-num">Shot 05</span>
+      <span class="shot-count">5 frames</span>
     </div>
-    <div class="scene-loc">Rooftop Bar · 0:16 – 0:32</div>
+    <div class="shot-scene">Scene 5 — Bridge</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%205/1.gif" alt="Shot 5 frame 1"><span class="label">1.gif</span></div>
+      <div class="item"><img src="shot%205/2.gif" alt="Shot 5 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%205/3.jpeg" alt="Shot 5 frame 3"><span class="label">3.jpeg</span></div>
+      <div class="item"><img src="shot%205/4.gif" alt="Shot 5 frame 4"><span class="label">4.gif</span></div>
+      <div class="item"><img src="shot%205/d40375f9-f5cd-4eb0-9b8a-3e33d20be09c_xl.jpeg" alt="Shot 5 frame 5"><span class="label">5.jpeg</span></div>
+    </div>
+    <div class="beat-content">
+      <div class="beat-time">0:15 – 0:16</div>
+      <span class="beat-tag alt">Bridge</span>
+      <p>Slow camera pull-out begins from a close-up on her glasses. This pull-out does not cut — it continues straight into Scene 2.</p>
+    </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,5)"> Shot complete</label>
+  </div>
 
-    <div class="beat">
+  <!-- SHOT 06 — 0:16 -->
+  <div class="shot" data-shot="6">
+    <div class="shot-head">
+      <span class="shot-num">Shot 06</span>
+      <span class="shot-count">1 frame</span>
+    </div>
+    <div class="shot-scene">Scene 6 — His Reveal</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%206/1.gif" alt="Shot 6 frame 1"><span class="label">1.gif</span></div>
+    </div>
+    <div class="beat-content">
       <div class="beat-time">0:16</div>
-      <div class="beat-body">
-        <span class="beat-tag alt">Bridge continues</span>
-        <p>The pull-out from Scene 1 keeps going, uncut, and lands on a guy seated at the rooftop event space. Same camera move, new world.</p>
-      </div>
+      <span class="beat-tag alt">Bridge continues</span>
+      <p>The pull-out from Scene 1 keeps going, uncut, and lands on a guy seated at the rooftop event space. Same camera move, new world.</p>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,6)"> Shot complete</label>
+  </div>
 
-    <div class="beat">
-      <div class="beat-time">0:16–0:24</div>
-      <div class="beat-body">
-        <p>Still slow motion. As the camera keeps pulling out, the space, the venue, and his friends slowly enter frame — cheering, socializing, drinks in hand. His dialogue plays in French across this stretch.</p>
-      </div>
+  <!-- SHOT 07 — 0:16–0:24 -->
+  <div class="shot" data-shot="7">
+    <div class="shot-head">
+      <span class="shot-num">Shot 07</span>
+      <span class="shot-count">5 frames</span>
     </div>
-
-    <div class="beat">
-      <div class="beat-time">0:24–0:29</div>
-      <div class="beat-body">
-        <span class="beat-tag b">B-roll</span>
-        <p>Slow motion ends. One or two b-roll cuts of the group socializing — natural, unposed, drinks and laughter.</p>
-      </div>
+    <div class="shot-scene">Scene 7 — His Rooftop</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%207/1.jpeg" alt="Shot 7 frame 1"><span class="label">1.jpeg</span></div>
+      <div class="item"><img src="shot%207/2.gif" alt="Shot 7 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%207/3.jpeg" alt="Shot 7 frame 3"><span class="label">3.jpeg</span></div>
+      <div class="item"><img src="shot%207/4.jpeg" alt="Shot 7 frame 4"><span class="label">4.jpeg</span></div>
+      <div class="item"><img src="shot%207/5.jpeg" alt="Shot 7 frame 5"><span class="label">5.jpeg</span></div>
     </div>
-
-    <div class="beat">
-      <div class="beat-time">0:29–0:32</div>
-      <div class="beat-body">
-        <span class="beat-tag b">Close</span>
-        <p>Far 50mm shot: the group socializing, soft in the background. In the foreground, the glasses rest beside a drink. Product text card fades in over the frame to close.</p>
-      </div>
+    <div class="beat-content">
+      <div class="beat-time">0:16 – 0:24</div>
+      <p>Still slow motion. As the camera keeps pulling out, the space, the venue, and his friends slowly enter frame — cheering, socializing, drinks in hand. His dialogue plays in French across this stretch.</p>
     </div>
-
     <div class="vo-block fr">
       <div class="vo-label">His dialogue — French, plays under 0:16–0:24</div>
       <div class="vo-line">
@@ -406,11 +605,54 @@
         <span class="fr-en">We keep our eyes on the destination, not the past.</span>
       </div>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,7)"> Shot complete</label>
+  </div>
 
+  <!-- SHOT 08 — 0:24–0:29 -->
+  <div class="shot" data-shot="8">
+    <div class="shot-head">
+      <span class="shot-num">Shot 08</span>
+      <span class="shot-count">3 frames</span>
+    </div>
+    <div class="shot-scene">Scene 8 — Close</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%208/1.gif" alt="Shot 8 frame 1"><span class="label">1.gif</span></div>
+      <div class="item"><img src="shot%208/2.gif" alt="Shot 8 frame 2"><span class="label">2.gif</span></div>
+      <div class="item"><img src="shot%208/3.jpeg" alt="Shot 8 frame 3"><span class="label">3.jpeg</span></div>
+    </div>
+    <div class="beat-content">
+      <div class="beat-time">0:24 – 0:29</div>
+      <span class="beat-tag b">B-roll</span>
+      <p>Slow motion ends. One or two b-roll cuts of the group socializing — natural, unposed, drinks and laughter.</p>
+    </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,8)"> Shot complete</label>
+  </div>
+
+  <!-- SHOT 09 — 0:29–0:32 -->
+  <div class="shot" data-shot="9">
+    <div class="shot-head">
+      <span class="shot-num">Shot 09</span>
+      <span class="shot-count">6 frames</span>
+    </div>
+    <div class="shot-scene">Scene 9 — Extra Editorial Style Shots</div>
+    <div class="media-grid">
+      <div class="item"><img src="shot%209/2a0b09bd-5eef-4872-a4d5-0f1f654504e3_fs.gif" alt="Shot 9 frame 1"><span class="label">1.gif</span></div>
+      <div class="item"><img src="shot%209/3640f31d-3603-4f43-8d85-fbf9906e2530_xl.jpeg" alt="Shot 9 frame 2"><span class="label">2.jpeg</span></div>
+      <div class="item"><img src="shot%209/47855351-6bea-4d43-888d-753af430ee23_xl.jpeg" alt="Shot 9 frame 3"><span class="label">3.jpeg</span></div>
+      <div class="item"><img src="shot%209/6fbe7004-f5e7-40c7-adfa-175d9862f6d3_xl.jpeg" alt="Shot 9 frame 4"><span class="label">4.jpeg</span></div>
+      <div class="item"><img src="shot%209/73b66a4c-35ad-4376-8d1a-b3177c75cdcc_fs.gif" alt="Shot 9 frame 5"><span class="label">5.gif</span></div>
+      <div class="item"><img src="shot%209/b3abc416-9ecf-436c-a292-9b64ae0ef790_fs.gif" alt="Shot 9 frame 6"><span class="label">6.gif</span></div>
+    </div>
+    <div class="beat-content">
+      <div class="beat-time">0:29 – 0:32</div>
+      <span class="beat-tag b">Close</span>
+      <p>Far 50mm shot: the group socializing, soft in the background. In the foreground, the glasses rest beside a drink. Product text card fades in over the frame to close.</p>
+    </div>
     <div class="closer">
       <h3>Closing frame</h3>
       <p>The glasses aren't being worn in the last shot — they're just sitting there, done with the job, in both worlds. That's the whole pitch: same object, morning run, night out, no difference to it.</p>
     </div>
+    <label class="shot-check"><input type="checkbox" onchange="toggleShot(this,9)"> Shot complete</label>
   </div>
 
   <div class="notes">
@@ -425,5 +667,35 @@
   </div>
 
 </div>
+
+<audio id="bg-music" src="MACHIAVEL.mp3" loop></audio>
+
+<script>
+function toggleShot(el,n){
+  var shot=el.closest('.shot');
+  if(el.checked){
+    shot.classList.add('done');
+  }else{
+    shot.classList.remove('done');
+  }
+  localStorage.setItem('shot-'+n,el.checked?'1':'0');
+}
+
+function toggleMusic(){
+  var a=document.getElementById('bg-music'),b=document.getElementById('play-btn');
+  if(a.paused){a.play();b.classList.add('playing');b.innerHTML='&#9646;&#9646; Pause';}
+  else{a.pause();b.classList.remove('playing');b.innerHTML='&#9654; Play';}
+}
+
+(function(){
+  for(var i=1;i<=9;i++){
+    var val=localStorage.getItem('shot-'+i);
+    if(val==='1'){
+      var cb=document.querySelector('.shot[data-shot="'+i+'"] input');
+      if(cb){cb.checked=true;cb.closest('.shot').classList.add('done');}
+    }
+  }
+})();
+</script>
 </body>
 </html>
